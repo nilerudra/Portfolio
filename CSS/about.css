@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: #0f0f0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    font-family: "Times New Roman";
+  }
+  
+  body::before {
+    content: "";
+    width: 100vw;
+    height: 100vw;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(168, 165, 165, 0.137),
+      transparent 60%
+    );
+    transform: translate(-10%, -10%);
+  }
+  
+  nav {
+    position: absolute;
+    height: 100vh;
+    right: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  .menu {
+    display: block;
+    color: #7f7e7e;
+    text-align: center;
+    font-size: 15px;
+    padding-top: 30px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .menu::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    border-radius: 20px;
+    background-color: white;
+    transition: width 0.3s, background-color 0.3s, color 0.3s;
+  }
+  
+  .menu:hover {
+    color: #ffffffd0;
+  }
+  .menu:hover::after {
+    width: 60%;
+    background-color: #ffffffb9;
+  }
+
+  .social-icons {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .social-icons .social {
+    color: #696969;
+    text-decoration: none;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-size: 18px;
+  }
+  
+  .social-icons .social:hover {
+    color: #333;
+  }
+
+  h3{
+    font-size: 2.5em;
+    color: #fff;
+    position: absolute;
+    font-weight: normal;
+    top: 10%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+.lg{
+    position: fixed;
+    top: 3%;
+    left: 3%;
+    cursor: pointer;
+    letter-spacing: 2px;
+    color: #ffffffcc;
+}
+
+.title{
+    font-size: 1.9em;
+    width: 560px;
+    color: #ffffffcc;
+    letter-spacing: 2px;
+    text-align: justify;
+    font-weight: 600;
+    font-family: sans-serif;
+    position: absolute;
+    top: 30%;
+    right: 13%;
+}
+
+.lb{
+    position: absolute;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    right: 43%;
+}
+
+.em{
+    top: 400px;
+    right: 43%;
+}
+
+.ph{
+    top: 430px;
+}
+
+.txt{
+    position: absolute;
+    font-size: 20px;
+    font-weight: 600;
+    color: #d5c456;
+    right: 27%;
+}
+
+.mail{
+    
+}
