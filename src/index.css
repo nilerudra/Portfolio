@@ -4,3 +4,15 @@
 body {
   font-family: "Fira Code", monospace;
 }
+
+* {
+  cursor: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

@@ -1,26 +1,52 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { ExternalLink, Github, Maximize2 } from "lucide-react";
-import LearningPod from "../assets/vikrant.mp4";
+import LearningPod from "../assets/PR2.png";
+import Farmseasy from "../assets/PR1.png";
+import Lymlyn from "../assets/PR3.png";
 import Lenden from "../assets/lenden.png";
 import Hope from "../assets/Hope.png";
+import { motion } from "framer-motion";
 
 const projects = [
+  {
+    title: "Farmseasy",
+    description:
+      "A smart farm management platform that helps farmers manage crops, track farm activities, access agricultural resources, and improve productivity through a user-friendly dashboard.",
+    tech: ["React", "Node.js", "MongoDB", "Express.js", "Tailwind CSS"],
+    image: Farmseasy,
+    demo: "https://farmseasy-fawn.vercel.app/",
+  },
+  {
+    title: "LYMLYN",
+    description:
+      "A smart farm management platform that helps farmers manage crops, track farm activities, access agricultural resources, and improve productivity through a user-friendly dashboard.",
+    tech: ["React", "Node.js", "MongoDB", "Express.js", "Tailwind CSS"],
+    image: Lymlyn,
+    demo: "https://lymlyn.netlify.app/",
+  },
   {
     title: "Learning Pod",
     description:
       "A collaborative learning platform featuring real-time chat, personalized learning paths, and auto-categorized resources.",
-    tech: ["React", "Node.js", "MongoDB", "Socket.IO", "Tailwind"],
-    video: LearningPod,
-    github: "https://github.com/rudra/learning-pod", // Replace with real repo
+    tech: [
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Socket.IO",
+      "Tailwind",
+    ],
+    image: LearningPod,
+    github: "https://github.com/rudra/learning-pod",
     demo: "https://learning-pod.netlify.app",
   },
   {
     title: "Lenden",
     description:
       "A peer-to-peer transaction manager built with Node.js and MongoDB for tracking credits/debts between friends.",
-    tech: ["Node.js", "Express", "MongoDB", "Tailwind"],
+    tech: ["HTML", "CSS", "JavaScript", "Node.js", "Express.js", "MongoDB"],
     image: Lenden,
-    github: "https://github.com/rudra/lenden", // Replace with real repo
+    github: "https://github.com/nilerudra/Len-Den",
     demo: "https://lenden.vercel.app",
   },
   {
@@ -29,7 +55,7 @@ const projects = [
       "A social engagement platform to connect volunteers with NGOs, promote social work, and inspire others to replicate initiatives.",
     tech: ["React", "Node.js", "MongoDB", "Tailwind"],
     image: Hope,
-    github: "https://github.com/nilerudra/Hope", // Replace with real repo
+    github: "https://github.com/nilerudra/Hope",
     demo: "https://hope-link.netlify.app/",
   },
   {
@@ -38,7 +64,7 @@ const projects = [
       "An Android app for students and teachers: progress tracking, attendance, lecture schedules, and task submissions.",
     tech: ["Java", "XML", "Firebase"],
     // image: Edunexus,
-    github: "https://github.com/nilerudra/Edunexus", // Replace with real repo
+    github: "https://github.com/nilerudra/Edunexus",
     demo: "#",
   },
   {
@@ -47,118 +73,60 @@ const projects = [
       "A Windows-based interactive platform for children to practice and learn abacus skills using C# and MySQL.",
     tech: ["C#", "MySQL", "Windows Forms"],
     // image: "/images/abacus.png",
-    github: "https://github.com/rudra/abacus", // Replace with real repo
+    github: "https://github.com/nilerudra/abacus",
     demo: "#",
   },
 ];
 
 const Projects = () => {
-  const videoRefs = useRef([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target;
-          if (entry.isIntersecting) {
-            video.play().catch(() => {}); // prevent autoplay error
-          } else {
-            video.pause();
-          }
-        });
-      },
-      {
-        threshold: 0.5, // 50% visible
-      }
-    );
-
-    videoRefs.current.forEach((video) => {
-      if (video) observer.observe(video);
-    });
-
-    return () => {
-      videoRefs.current.forEach((video) => {
-        if (video) observer.unobserve(video);
-      });
-    };
-  }, []);
-
-  const handleFullScreen = (el) => {
-    if (!el) return;
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      if (el.requestFullscreen) {
-        el.requestFullscreen().catch((err) => {
-          console.warn("Fullscreen request failed:", err);
-        });
-      }
-    }
-  };
-
   return (
     <section id="projects" className="bg-white py-20 px-6 md:px-20">
-      <h2 className="text-3xl font-light text-center text-gray-800 mb-12 uppercase tracking-widest">
-        My Projects
-      </h2>
+      <div className="text-center mb-16">
+        <p className="text-sm uppercase tracking-[0.4em] text-gray-500 mb-3">
+          Portfolio
+        </p>
+
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+          Featured Projects
+        </h2>
+
+        <p className="mt-4 text-gray-500 max-w-2xl mx-auto">
+          A collection of products, platforms, and applications I've built
+          across frontend, backend, real-time systems, and automation workflows.
+        </p>
+      </div>
+
       <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((proj, idx) => (
-          <div
+          <motion.div
             key={idx}
-            className="bg-[#f9f9f9] shadow-lg rounded-lg overflow-hidden transition-transform hover:scale-[1.02]"
+            initial={{
+              opacity: 0,
+              y: 40,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: idx * 0.1,
+            }}
+            whileHover={{
+              y: -12,
+            }}
+            className="group bg-white rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500"
           >
             <div className="relative">
-              {proj.video ? (
-                <video
-                  ref={(el) => (videoRefs.current[idx] = el)}
-                  src={proj.video}
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-48 object-cover"
-                />
-              ) : proj.image ? (
-                <img
-                  src={proj.image}
-                  alt={proj.title}
-                  className="w-full h-48 object-fit"
-                  ref={(el) => (videoRefs.current[idx] = el)} // assign ref for fullscreen
-                />
-              ) : (
-                <div
-                  ref={(el) => (videoRefs.current[idx] = el)}
-                  className="w-full h-48 flex items-center justify-center font-bold text-4xl select-none"
-                  style={{
-                    perspective: "800px",
-                  }}
-                >
-                  <span
-                    style={{
-                      display: "inline-block",
-                      textShadow: `
-          1px 1px 0 #e0e0e0,
-          2px 2px 2px rgba(0,0,0,0.6),
-          3px 3px 4px rgba(0,0,0,0.4)
-        `,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
-                  >
-                    {proj.title}
-                  </span>
-                </div>
-              )}
-              <button
-                onClick={() => handleFullScreen(videoRefs.current[idx])}
-                className="absolute top-2 right-2 bg-black bg-opacity-50 rounded p-1 text-white hover:bg-opacity-80"
-                aria-label="Fullscreen toggle"
-                title="Fullscreen"
-              >
-                <Maximize2 size={10} />
-              </button>
+              <img
+                src={proj.image}
+                alt={proj.title}
+                className="w-full h-48 object-fit"
+              />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900">
+              <h3 className="text-xl font-semibold text-yellow-500">
                 {proj.title}
               </h3>
               <p className="mt-2 text-gray-600 text-sm">{proj.description}</p>
@@ -172,28 +140,34 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
-              <div className="mt-4 flex gap-4">
-                <a
-                  href={proj.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-gray-700 hover:text-black flex items-center gap-1 text-sm"
-                >
-                  <Github size={16} /> Code
-                </a>
+
+              <div className="mt-6 flex gap-3">
+                {proj.github && (
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
+                  >
+                    <Github size={16} />
+                    Code
+                  </a>
+                )}
+
                 {proj.demo !== "#" && (
                   <a
                     href={proj.demo}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-gray-700 hover:text-black flex items-center gap-1 text-sm"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition"
                   >
-                    <ExternalLink size={16} /> Live
+                    <ExternalLink size={16} />
+                    Live Demo
                   </a>
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
